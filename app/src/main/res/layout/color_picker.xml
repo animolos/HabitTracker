@@ -40,11 +40,11 @@
                 android:layout_margin="22dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:textColorHint="#38EA10"
+                app:backgroundTint="#38EA10"
                 app:cornerRadius="4dp"
                 app:strokeColor="@color/white"
-                app:strokeWidth="2dp"
-                app:backgroundTint="#38EA10"
-                android:textColorHint="#38EA10"/>
+                app:strokeWidth="2dp" />
 
             <Button
                 android:id="@+id/color_button2"
@@ -53,11 +53,11 @@
                 android:layout_margin="22dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:textColorHint="#DD17C83E"
+                app:backgroundTint="#DD17C83E"
                 app:cornerRadius="4dp"
                 app:strokeColor="@color/white"
-                app:strokeWidth="2dp"
-                app:backgroundTint="#DD17C83E"
-                android:textColorHint="#DD17C83E"/>
+                app:strokeWidth="2dp" />
 
             <Button
                 android:id="@+id/color_button3"
@@ -66,11 +66,11 @@
                 android:layout_margin="22dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:textColorHint="#CC48AE6D"
+                app:backgroundTint="#CC48AE6D"
                 app:cornerRadius="4dp"
                 app:strokeColor="@color/white"
-                app:strokeWidth="2dp"
-                app:backgroundTint="#CC48AE6D"
-                android:textColorHint="#CC48AE6D"/>
+                app:strokeWidth="2dp" />
 
             <Button
                 android:id="@+id/color_button4"
@@ -79,11 +79,11 @@
                 android:layout_margin="22dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:textColorHint="#8B3BCC92"
+                app:backgroundTint="#8B3BCC92"
                 app:cornerRadius="4dp"
                 app:strokeColor="@color/white"
-                app:strokeWidth="2dp"
-                app:backgroundTint="#8B3BCC92"
-                android:textColorHint="#8B3BCC92"/>
+                app:strokeWidth="2dp" />
 
             <Button
                 android:id="@+id/color_button5"
@@ -92,11 +92,11 @@
                 android:layout_margin="22dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:textColorHint="#770B99F6"
+                app:backgroundTint="#770B99F6"
                 app:cornerRadius="4dp"
                 app:strokeColor="@color/white"
-                app:strokeWidth="2dp"
-                app:backgroundTint="#770B99F6"
-                android:textColorHint="#770B99F6"/>
+                app:strokeWidth="2dp" />
 
             <Button
                 android:id="@+id/color_button6"
@@ -105,11 +105,11 @@
                 android:layout_margin="22dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:textColorHint="#D21775FF"
+                app:backgroundTint="#D21775FF"
                 app:cornerRadius="4dp"
                 app:strokeColor="@color/white"
-                app:strokeWidth="2dp"
-                app:backgroundTint="#D21775FF"
-                android:textColorHint="#D21775FF"/>
+                app:strokeWidth="2dp" />
 
             <Button
                 android:id="@+id/color_button7"
@@ -118,11 +118,11 @@
                 android:layout_margin="22dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:textColorHint="#E81B3CDF"
+                app:backgroundTint="#E81B3CDF"
                 app:cornerRadius="4dp"
                 app:strokeColor="@color/white"
-                app:strokeWidth="2dp"
-                app:backgroundTint="#E81B3CDF"
-                android:textColorHint="#E81B3CDF"/>
+                app:strokeWidth="2dp" />
 
             <Button
                 android:id="@+id/color_button8"
@@ -131,11 +131,11 @@
                 android:layout_margin="22dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:textColorHint="#031CFF"
+                app:backgroundTint="#031CFF"
                 app:cornerRadius="4dp"
                 app:strokeColor="@color/white"
-                app:strokeWidth="2dp"
-                app:backgroundTint="#031CFF"
-                android:textColorHint="#031CFF"/>
+                app:strokeWidth="2dp" />
 
             <Button
                 android:id="@+id/color_button9"
@@ -144,11 +144,11 @@
                 android:layout_margin="22dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:textColorHint="#3006E6"
+                app:backgroundTint="#3006E6"
                 app:cornerRadius="4dp"
                 app:strokeColor="@color/white"
-                app:strokeWidth="2dp"
-                app:backgroundTint="#3006E6"
-                android:textColorHint="#3006E6"/>
+                app:strokeWidth="2dp" />
 
             <Button
                 android:id="@+id/color_button10"
@@ -158,11 +158,11 @@
                 android:layout_margin="22dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:textColorHint="#431CEF"
+                app:backgroundTint="#431CEF"
                 app:cornerRadius="4dp"
                 app:strokeColor="@color/white"
-                app:strokeWidth="2dp"
-                app:backgroundTint="#431CEF"
-                android:textColorHint="#431CEF"/>
+                app:strokeWidth="2dp" />
 
             <Button
                 android:id="@+id/color_button11"
@@ -171,11 +171,11 @@
                 android:layout_margin="22dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:textColorHint="#5D13E1"
+                app:backgroundTint="#5D13E1"
                 app:cornerRadius="4dp"
                 app:strokeColor="@color/white"
-                app:strokeWidth="2dp"
-                app:backgroundTint="#5D13E1"
-                android:textColorHint="#5D13E1"/>
+                app:strokeWidth="2dp" />
 
             <Button
                 android:id="@+id/color_button12"
@@ -184,11 +184,11 @@
                 android:layout_margin="22dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:textColorHint="#B0276E"
+                app:backgroundTint="#B0276E"
                 app:cornerRadius="4dp"
                 app:strokeColor="@color/white"
-                app:strokeWidth="2dp"
-                app:backgroundTint="#B0276E"
-                android:textColorHint="#B0276E"/>
+                app:strokeWidth="2dp" />
 
             <Button
                 android:id="@+id/color_button13"
@@ -197,11 +197,11 @@
                 android:layout_margin="22dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:textColorHint="#9F1D55"
+                app:backgroundTint="#9F1D55"
                 app:cornerRadius="4dp"
                 app:strokeColor="@color/white"
-                app:strokeWidth="2dp"
-                app:backgroundTint="#9F1D55"
-                android:textColorHint="#9F1D55"/>
+                app:strokeWidth="2dp" />
 
             <Button
                 android:id="@+id/color_button14"
@@ -210,11 +210,11 @@
                 android:layout_margin="22dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:textColorHint="#BD053F"
+                app:backgroundTint="#BD053F"
                 app:cornerRadius="4dp"
                 app:strokeColor="@color/white"
-                app:strokeWidth="2dp"
-                app:backgroundTint="#BD053F"
-                android:textColorHint="#BD053F"/>
+                app:strokeWidth="2dp" />
 
             <Button
                 android:id="@+id/color_button15"
@@ -223,11 +223,11 @@
                 android:layout_margin="22dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:textColorHint="#C3152A"
+                app:backgroundTint="#C3152A"
                 app:cornerRadius="4dp"
                 app:strokeColor="@color/white"
-                app:strokeWidth="2dp"
-                app:backgroundTint="#C3152A"
-                android:textColorHint="#C3152A"/>
+                app:strokeWidth="2dp" />
 
         </LinearLayout>
     </HorizontalScrollView>

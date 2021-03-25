@@ -56,8 +56,9 @@ class EditHabitActivity : AppCompatActivity(), ColorPickerDialog.OnInputListener
         binding.spinnerPriorities.setSelection(habit.priority.value)
         binding.editTextTimes.setText(habit.periodicity.timesCount.toString())
         binding.editTextFrequency.setText(habit.periodicity.frequency.toString())
-        
-        binding.btnPickColor.backgroundTintList = ColorStateList.valueOf(habit.color)
+
+        color = habit.color
+        binding.btnPickColor.backgroundTintList = ColorStateList.valueOf(color)
     }
 
     private fun isInputFieldsFilled(): Boolean {
