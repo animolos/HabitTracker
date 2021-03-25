@@ -8,7 +8,8 @@ data class HabitData(
         val description: String,
         val priority: HabitPriority,
         val type: HabitType,
-        val periodicity: HabitPeriodicity
+        val periodicity: HabitPeriodicity,
+        val color: Int
 )
 
 enum class HabitPriority(val value: Int) {

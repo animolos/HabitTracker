@@ -1,20 +1,24 @@
 package com.example.habittracker
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
 import com.example.habittracker.databinding.EditHabitActivityBinding
 import java.util.*
 
-class EditHabitActivity : AppCompatActivity() {
+class EditHabitActivity : AppCompatActivity(), ColorPickerDialog.OnInputListener {
 
     companion object {
         const val HABIT_ID = "habit_id"
     }
 
     private lateinit var binding: EditHabitActivityBinding
+    private lateinit var colorDialog: DialogFragment
+    var color: Int = R.color.design_default_color_primary
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +34,11 @@ class EditHabitActivity : AppCompatActivity() {
         else {
             binding.btnCreateHabit.setOnClickListener { saveHabit() }
         }
+
+        binding.btnPickColor.setOnClickListener {
+            colorDialog.show(supportFragmentManager, "Color Picker")
+        }
+        colorDialog = ColorPickerDialog()
     }
 
     private fun updateView(habitId: UUID) {
@@ -47,6 +56,8 @@ class EditHabitActivity : AppCompatActivity() {
         binding.spinnerPriorities.setSelection(habit.priority.value)
         binding.editTextTimes.setText(habit.periodicity.timesCount.toString())
         binding.editTextFrequency.setText(habit.periodicity.frequency.toString())
+        
+        binding.btnPickColor.backgroundTintList = ColorStateList.valueOf(habit.color)
     }
 
     private fun isInputFieldsFilled(): Boolean {
@@ -93,7 +104,8 @@ class EditHabitActivity : AppCompatActivity() {
                 HabitPeriodicity(
                         binding.editTextTimes.text.toString().toInt(),
                         binding.editTextFrequency.text.toString().toInt()
-                )
+                ),
+                color
         )
 
         HabitStorage.addOrUpdate(habit)
@@ -107,5 +119,11 @@ class EditHabitActivity : AppCompatActivity() {
 
         setResult(RESULT_OK, intent)
         finish()
+    }
+
+    override fun sendColor(color: Int) {
+        binding.btnPickColor.backgroundTintList = ColorStateList.valueOf(color)
+        this.color = color
+        colorDialog.dismiss()
     }
 }

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="22dp"
+        android:text="Pick color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="387dp"
+        android:layout_height="75dp"
+        android:layout_margin="22dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <LinearLayout
+            android:id="@+id/color_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/color_button1"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="22dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="4dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                app:backgroundTint="#38EA10"
+                android:textColorHint="#38EA10"/>
+
+            <Button
+                android:id="@+id/color_button2"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="22dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="4dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                app:backgroundTint="#DD17C83E"
+                android:textColorHint="#DD17C83E"/>
+
+            <Button
+                android:id="@+id/color_button3"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="22dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="4dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                app:backgroundTint="#CC48AE6D"
+                android:textColorHint="#CC48AE6D"/>
+
+            <Button
+                android:id="@+id/color_button4"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="22dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="4dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                app:backgroundTint="#8B3BCC92"
+                android:textColorHint="#8B3BCC92"/>
+
+            <Button
+                android:id="@+id/color_button5"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="22dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="4dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                app:backgroundTint="#770B99F6"
+                android:textColorHint="#770B99F6"/>
+
+            <Button
+                android:id="@+id/color_button6"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="22dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="4dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                app:backgroundTint="#D21775FF"
+                android:textColorHint="#D21775FF"/>
+
+            <Button
+                android:id="@+id/color_button7"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="22dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="4dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                app:backgroundTint="#E81B3CDF"
+                android:textColorHint="#E81B3CDF"/>
+
+            <Button
+                android:id="@+id/color_button8"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="22dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="4dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                app:backgroundTint="#031CFF"
+                android:textColorHint="#031CFF"/>
+
+            <Button
+                android:id="@+id/color_button9"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="22dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="4dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                app:backgroundTint="#3006E6"
+                android:textColorHint="#3006E6"/>
+
+            <Button
+                android:id="@+id/color_button10"
+
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="22dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="4dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                app:backgroundTint="#431CEF"
+                android:textColorHint="#431CEF"/>
+
+            <Button
+                android:id="@+id/color_button11"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="22dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="4dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                app:backgroundTint="#5D13E1"
+                android:textColorHint="#5D13E1"/>
+
+            <Button
+                android:id="@+id/color_button12"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="22dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="4dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                app:backgroundTint="#B0276E"
+                android:textColorHint="#B0276E"/>
+
+            <Button
+                android:id="@+id/color_button13"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="22dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="4dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                app:backgroundTint="#9F1D55"
+                android:textColorHint="#9F1D55"/>
+
+            <Button
+                android:id="@+id/color_button14"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="22dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="4dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                app:backgroundTint="#BD053F"
+                android:textColorHint="#BD053F"/>
+
+            <Button
+                android:id="@+id/color_button15"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="22dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="4dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                app:backgroundTint="#C3152A"
+                android:textColorHint="#C3152A"/>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
