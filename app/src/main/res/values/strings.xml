@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Habit tracker</string>
+    <string name="addButtonText">fab</string>
+    <string name="habit">Habit: %1$s</string>
+</resources>

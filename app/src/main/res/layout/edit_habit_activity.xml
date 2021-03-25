@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditHabitActivity">
+
+    <Button
+        android:id="@+id/btnCreateHabit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Save"
+        app:borderWidth="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        style="@style/Base.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_anchorGravity="center">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginRight="22dp">
+
+            <EditText
+                android:id="@+id/editTextHabitName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editTextHabitDescription"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Description"
+
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextHabitName" />
+
+            <TextView
+                android:id="@+id/textPriority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Priority"
+                app:layout_constraintStart_toStartOf="@+id/spinnerPriorities"
+                app:layout_constraintTop_toBottomOf="@+id/editTextHabitDescription" />
+
+            <Spinner
+                android:id="@+id/spinnerPriorities"
+                android:layout_width="164dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:entries="@array/priorities"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/radioGroup"
+                app:layout_constraintTop_toBottomOf="@+id/textPriority" />
+
+            <TextView
+                android:id="@+id/textType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="24dp"
+                android:gravity="start"
+                android:text="Type"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextHabitDescription" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="165dp"
+                android:layout_height="78dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textType">
+
+                <RadioButton
+                    android:id="@+id/radioButton1"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Good" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Bad" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/textPeriodicity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Periodicity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+            <TextView
+                android:id="@+id/textRepeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Repeat"
+                app:layout_constraintStart_toStartOf="@+id/textPeriodicity"
+                app:layout_constraintTop_toBottomOf="@+id/textPeriodicity" />
+
+            <EditText
+                android:id="@+id/editTextFrequency"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+
+                android:autofillHints=""
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="3"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textFrequency"
+                app:layout_constraintStart_toEndOf="@+id/textFrequency"
+                app:layout_constraintTop_toTopOf="@+id/textFrequency" />
+
+            <TextView
+                android:id="@+id/textFrequency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:text="times every"
+                app:layout_constraintBottom_toBottomOf="@+id/textRepeat"
+                app:layout_constraintStart_toEndOf="@+id/editTextTimes"
+                app:layout_constraintTop_toTopOf="@+id/textRepeat" />
+
+            <TextView
+                android:id="@+id/textDays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:text="days"
+                app:layout_constraintBottom_toBottomOf="@+id/textFrequency"
+                app:layout_constraintStart_toEndOf="@+id/editTextFrequency"
+                app:layout_constraintTop_toTopOf="@+id/textFrequency" />
+
+            <EditText
+                android:id="@+id/editTextTimes"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="3"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textRepeat"
+                app:layout_constraintStart_toEndOf="@+id/textRepeat"
+                app:layout_constraintTop_toTopOf="@+id/textRepeat" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
