@@ -1,15 +1,15 @@
-package com.example.habittracker
+package com.example.habittracker.habit_data
 
 import java.util.*
 
 data class HabitData(
-        val id: UUID,
-        val name: String,
-        val description: String,
-        val priority: HabitPriority,
-        val type: HabitType,
-        val periodicity: HabitPeriodicity,
-        val color: Int
+    val id: UUID,
+    val name: String,
+    val description: String,
+    val priority: HabitPriority,
+    val type: HabitType,
+    val periodicity: HabitPeriodicity,
+    val color: Int
 )
 
 enum class HabitPriority(val value: Int) {

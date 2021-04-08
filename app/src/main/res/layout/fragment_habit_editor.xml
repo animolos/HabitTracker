@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditHabitActivity">
+    tools:context=".ui.habits.HabitEditorFragment">
 
     <Button
         android:id="@+id/btnCreateHabit"
@@ -14,7 +14,7 @@
         android:layout_margin="20dp"
         android:clickable="true"
         android:focusable="true"
-        android:text="Save"
+        android:text="@string/save"
         app:borderWidth="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -38,7 +38,6 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
                 app:backgroundTint="@color/design_default_color_primary"
                 app:layout_constraintBottom_toBottomOf="@+id/textChooseColor"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="64dp"
-                android:text="Pick color"
+                android:text="@string/pick_color"
                 app:layout_constraintStart_toStartOf="@+id/spinnerPriorities"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerPriorities" />
 
@@ -62,7 +61,7 @@
                 android:autofillHints=""
                 android:ems="10"
                 android:gravity="start|top"
-                android:hint="Name"
+                android:hint="@string/habit_name"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -77,7 +76,7 @@
                 android:autofillHints=""
                 android:ems="10"
                 android:gravity="start|top"
-                android:hint="Description"
+                android:hint="@string/description"
 
                 android:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Priority"
+                android:text="@string/priority"
                 app:layout_constraintStart_toStartOf="@+id/spinnerPriorities"
                 app:layout_constraintTop_toBottomOf="@+id/editTextHabitDescription" />
 
@@ -100,7 +99,6 @@
                 android:layout_height="25dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
                 android:entries="@array/priorities"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/radioGroup"
@@ -111,10 +109,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="24dp"
                 android:gravity="start"
-                android:text="Type"
+                android:text="@string/type"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextHabitDescription" />
 
@@ -123,7 +120,6 @@
                 android:layout_width="165dp"
                 android:layout_height="70dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textType">
@@ -133,14 +129,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:layout_marginTop="0dp"
-                    android:text="Good" />
+                    android:text="@string/good" />
 
                 <RadioButton
                     android:id="@+id/radioButton2"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:layout_marginTop="5dp"
-                    android:text="Bad" />
+                    android:text="@string/bad" />
 
             </RadioGroup>
 
@@ -149,9 +145,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:text="Periodicity"
+                android:text="@string/periodicity"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
@@ -160,7 +155,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Repeat"
+                android:layout_marginBottom="80dp"
+                android:text="@string/repeat"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textPeriodicity"
                 app:layout_constraintTop_toBottomOf="@+id/textPeriodicity" />
 
@@ -169,7 +166,6 @@
                 android:layout_width="30dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
 
                 android:autofillHints=""
                 android:ems="10"
@@ -185,8 +181,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:text="times every"
+                android:text="@string/times_every"
                 app:layout_constraintBottom_toBottomOf="@+id/textRepeat"
                 app:layout_constraintStart_toEndOf="@+id/editTextTimes"
                 app:layout_constraintTop_toTopOf="@+id/textRepeat" />
@@ -196,8 +191,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:text="days"
+                android:text="@string/days"
                 app:layout_constraintBottom_toBottomOf="@+id/textFrequency"
                 app:layout_constraintStart_toEndOf="@+id/editTextFrequency"
                 app:layout_constraintTop_toTopOf="@+id/textFrequency" />
@@ -207,7 +201,6 @@
                 android:layout_width="30dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:autofillHints=""
                 android:ems="10"
                 android:inputType="number"

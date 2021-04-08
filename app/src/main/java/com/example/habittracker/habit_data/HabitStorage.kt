@@ -1,18 +1,14 @@
-package com.example.habittracker
+package com.example.habittracker.habit_data
 
 import java.util.*
 
 object HabitStorage {
 
     private val habits = mutableMapOf<UUID, HabitData>()
-    private val keys = mutableListOf<UUID>()
 
-    val size: Int get() = keys.size
+    val size: Int get() = habits.size
 
     fun addOrUpdate(habit: HabitData) {
-        if (!habits.containsKey(habit.id)) {
-            keys.add(habit.id)
-        }
         habits[habit.id] = habit
     }
 
@@ -21,10 +17,16 @@ object HabitStorage {
     }
 
     fun getByIndex(index: Int): HabitData? {
-        return habits[keys[index]]
+        return habits[habits.keys.elementAt(index)]
     }
 
     fun getIndexById(habitId: UUID): Int {
-        return keys.indexOf(habitId)
+        return habits.keys.indexOf(habitId)
+    }
+
+    fun getHabitsByType(habitType: HabitType): MutableList<HabitData> {
+        return habits.values.filter {
+            it.type == habitType
+        }.toMutableList()
     }
 }
