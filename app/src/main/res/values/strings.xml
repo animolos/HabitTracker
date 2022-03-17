@@ -2,4 +2,16 @@
     <string name="app_name">Habit tracker</string>
     <string name="addButtonText">fab</string>
     <string name="habit">Habit: %1$s</string>
+    <string name="text_save_btn">Save</string>
+    <string name="text_days">days</string>
+    <string name="text_frequency">times every</string>
+    <string name="text_repeat">Repeat</string>
+    <string name="text_periodicity">Periodicity</string>
+    <string name="text_bad">Bad</string>
+    <string name="text_good">Good</string>
+    <string name="text_type">Type</string>
+    <string name="text_priority">Priority</string>
+    <string name="text_hint_description">Description</string>
+    <string name="text_hint_name">Name</string>
+    <string name="text_pick_color">Pick color</string>
 </resources>

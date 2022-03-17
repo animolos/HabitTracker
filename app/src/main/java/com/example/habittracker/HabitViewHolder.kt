@@ -2,23 +2,18 @@ package com.example.habittracker
 
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.habittracker.databinding.ItemHabitsBinding
+import com.example.habittracker.databinding.HabitItemBinding
 
-class HabitViewHolder(private val binding: ItemHabitsBinding)
+class HabitViewHolder(private val binding: HabitItemBinding)
     : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(habit: HabitData) {
-        binding.habitName.text = "Habit: ${habit.name}"
-        binding.habitDescription.text = "Description: ${habit.description}"
-        binding.habitPriority.text = "Priority: ${habit.priority}"
-        binding.habitType.text = "Type: ${habit.type}"
+        binding.habitName.text = "${habit.name}"
         binding.habitPeriodicity.text =
-                "${habit.periodicity.timesCount} times every ${habit.periodicity.frequency} days"
+            "${habit.periodicity.timesCount} times every ${habit.periodicity.frequency} days"
 
-        val background = itemView.findViewById<View>(R.id.item_layout).background
         val filter = PorterDuffColorFilter(habit.color, PorterDuff.Mode.SRC_ATOP)
-        background.colorFilter = filter
+        binding.itemLayout.background.colorFilter = filter
     }
 }

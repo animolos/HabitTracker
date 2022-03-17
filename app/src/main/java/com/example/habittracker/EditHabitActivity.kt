@@ -4,64 +4,59 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.DialogFragment
 import com.example.habittracker.databinding.EditHabitActivityBinding
-import java.util.*
 
-class EditHabitActivity : AppCompatActivity(), ColorPickerDialog.OnInputListener {
+class EditHabitActivity : AppCompatActivity(), OnColorSelectedListener {
 
     companion object {
-        const val HABIT_ID = "habit_id"
+        const val HABIT_ITEM = "habit_item"
     }
 
     private lateinit var binding: EditHabitActivityBinding
-    private lateinit var colorDialog: DialogFragment
-    var color: Int = R.color.design_default_color_primary
+    private var color: Int = R.color.design_default_color_primary
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = EditHabitActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val habitId = intent.getSerializableExtra(HABIT_ID)
-        if (habitId != null) {
-            val id = habitId as UUID
-            updateView(id)
-            binding.btnCreateHabit.setOnClickListener { saveHabit(id) }
+        var habitId = HabitRepository.size
+
+        val value = intent.getSerializableExtra(HABIT_ITEM)
+        if (value != null) {
+            val habit = value as HabitData
+            updateView(habit)
+            habitId = habit.id
         }
-        else {
-            binding.btnCreateHabit.setOnClickListener { saveHabit() }
-        }
+
+        binding.btnCreateHabit.setOnClickListener { onClickSaveHabit(habitId) }
 
         binding.btnPickColor.setOnClickListener {
-            colorDialog.show(supportFragmentManager, "Color Picker")
+            ColorSelectionDialogFragment().show(supportFragmentManager, "Color Picker")
         }
-        colorDialog = ColorPickerDialog()
     }
 
-    private fun updateView(habitId: UUID) {
-        val habit = HabitStorage.getById(habitId)!!
+    private fun updateView(habit: HabitData) {
         binding.editTextHabitName.setText(habit.name)
         binding.editTextHabitDescription.setText(habit.description)
 
-        val id = when (habit.type) {
-            HabitType.Good -> R.id.radioButton1
-            HabitType.Bad -> R.id.radioButton2
+        val radioButton = when (habit.type) {
+            HabitType.Good -> binding.radioButtonGood
+            HabitType.Bad -> binding.radioButtonBad
         }
 
-        binding.radioGroup.check(id)
+        binding.radioGroup.check(radioButton.id)
 
         binding.spinnerPriorities.setSelection(habit.priority.value)
         binding.editTextTimes.setText(habit.periodicity.timesCount.toString())
         binding.editTextFrequency.setText(habit.periodicity.frequency.toString())
 
         color = habit.color
-        binding.btnPickColor.backgroundTintList = ColorStateList.valueOf(color)
+        binding.btnPickColor.backgroundTintList = ColorStateList.valueOf(habit.color)
     }
 
-    private fun isInputFieldsFilled(): Boolean {
+    private fun checkIfInputFieldFilled(): Boolean {
         var result = true
 
         if (binding.editTextHabitName.text.isBlank()) {
@@ -88,43 +83,42 @@ class EditHabitActivity : AppCompatActivity(), ColorPickerDialog.OnInputListener
         return result
     }
 
-    private fun saveHabit(habitId: UUID = UUID.randomUUID()) {
-        if (!isInputFieldsFilled())
+    private fun onClickSaveHabit(habitId: Int) {
+        if (!checkIfInputFieldFilled())
             return
 
-        val radioGroup = binding.radioGroup
-        val radioButtonId = radioGroup.checkedRadioButtonId
-        val typeValue = radioGroup.indexOfChild(findViewById(radioButtonId))
-
-        val habit = HabitData(
-                habitId,
-                binding.editTextHabitName.text.toString(),
-                binding.editTextHabitDescription.text.toString(),
-                HabitPriority.getByValue(binding.spinnerPriorities.selectedItemPosition)!!,
-                HabitType.getByValue(typeValue)!!,
-                HabitPeriodicity(
-                        binding.editTextTimes.text.toString().toInt(),
-                        binding.editTextFrequency.text.toString().toInt()
-                ),
-                color
-        )
-
-        HabitStorage.addOrUpdate(habit)
+        val habit = createHabit(habitId)
+        HabitRepository.addOrUpdate(habit)
 
         val intent = Intent(
                 this,
                 MainActivity::class.java
         ).apply {
-            putExtra(HABIT_ID, habitId)
+            putExtra(MainActivity.HABIT_POSITION, habitId)
         }
 
         setResult(RESULT_OK, intent)
         finish()
     }
 
-    override fun sendColor(color: Int) {
+    private fun createHabit(habitId: Int): HabitData {
+        val habitType = if (binding.radioButtonGood.isChecked) HabitType.Good else HabitType.Bad
+
+        return HabitData(
+            habitId,
+            binding.editTextHabitName.text.toString(),
+            binding.editTextHabitDescription.text.toString(),
+            HabitPriority.getByValue(binding.spinnerPriorities.selectedItemPosition)!!,
+            habitType,
+            HabitPeriodicity(
+                binding.editTextTimes.text.toString().toInt(),
+                binding.editTextFrequency.text.toString().toInt()
+            ),
+            color
+        )
+    }
+    override fun onColorSelected(color: Int) {
         binding.btnPickColor.backgroundTintList = ColorStateList.valueOf(color)
         this.color = color
-        colorDialog.dismiss()
     }
 }

@@ -1,16 +1,15 @@
 package com.example.habittracker
 
-import java.util.*
+import java.io.Serializable
 
 data class HabitData(
-        val id: UUID,
+        val id: Int,
         val name: String,
         val description: String,
         val priority: HabitPriority,
         val type: HabitType,
         val periodicity: HabitPeriodicity,
-        val color: Int
-)
+        val color: Int) : Serializable
 
 enum class HabitPriority(val value: Int) {
     High(0),
@@ -33,4 +32,4 @@ enum class HabitType(val value: Int) {
     }
 }
 
-data class HabitPeriodicity(val timesCount: Int, val frequency: Int)
+data class HabitPeriodicity(val timesCount: Int, val frequency: Int): Serializable

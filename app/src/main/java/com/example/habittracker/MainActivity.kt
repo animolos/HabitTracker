@@ -1,19 +1,40 @@
 package com.example.habittracker
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.habittracker.databinding.ActivityMainBinding
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        const val REQUEST_CODE_ADD_HABIT = 0
-        const val REQUEST_CODE_CHANGE_HABIT = 1
+        const val HABIT_POSITION = "habit_position"
     }
 
     private lateinit var habitsAdapter: HabitsAdapter
+
+    private val startForCreateHabit = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data: Intent? = result.data
+            val habitId = data?.getIntExtra(HABIT_POSITION, 0)
+            if (habitId != null) {
+                habitsAdapter.notifyItemInserted(habitId)
+            }
+        }
+    }
+
+    private val startForEditHabit = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data: Intent? = result.data
+            val habitId = data?.getIntExtra(HABIT_POSITION, 0)
+            if (habitId != null) {
+                habitsAdapter.notifyItemChanged(habitId)
+            }
+        }
+    }
 
     private lateinit var binding: ActivityMainBinding
 
@@ -22,46 +43,26 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        habitsAdapter = HabitsAdapter(this::changeHabit)
+        habitsAdapter = HabitsAdapter(this::editHabit)
 
-        binding.habitsRecycler.adapter = habitsAdapter
-
-        // binding.habitsRecycler.layoutManager = LinearLayoutManager(this@MainActivity)
+        binding.habitsRecycler.apply {
+            adapter = habitsAdapter
+            layoutManager = LinearLayoutManager(context)
+        }
 
         binding.btnAddNewHabit.setOnClickListener { addHabit() }
     }
 
     private fun addHabit() {
+        startForCreateHabit.launch(Intent(this, EditHabitActivity::class.java))
+    }
+
+    private fun editHabit(habit: HabitData) {
         val intent = Intent(this, EditHabitActivity::class.java)
-        startActivityForResult(intent, REQUEST_CODE_ADD_HABIT)
-    }
-
-    private fun changeHabit(habitId: UUID) {
-        val intent = Intent(
-                this,
-                EditHabitActivity::class.java
-        ).apply {
-            putExtra(EditHabitActivity.HABIT_ID, habitId)
+            .apply {
+            putExtra(EditHabitActivity.HABIT_ITEM, habit)
         }
 
-        startActivityForResult(intent, REQUEST_CODE_CHANGE_HABIT)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        val habitId = data?.getSerializableExtra(EditHabitActivity.HABIT_ID) as UUID
-        val position = HabitStorage.getIndexById(habitId)
-
-        if (resultCode != RESULT_OK)
-            return
-        when (requestCode) {
-            REQUEST_CODE_ADD_HABIT -> {
-                habitsAdapter.notifyItemInserted(position)
-            }
-            REQUEST_CODE_CHANGE_HABIT -> {
-                habitsAdapter.notifyItemChanged(position)
-            }
-        }
+        startForEditHabit.launch(intent)
     }
 }
