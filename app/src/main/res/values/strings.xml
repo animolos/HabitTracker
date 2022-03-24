@@ -24,4 +24,7 @@
     <string name="habit_description_text">Description: %s</string>
     <string name="habit_priority_text">Priority: %s</string>
     <string name="habit_type_text">Type: %s</string>
+    <string name="label_habits">Habits</string>
+    <string name="label_edit_habit">Edit habit</string>
+    <string name="label_about">About</string>
 </resources>
