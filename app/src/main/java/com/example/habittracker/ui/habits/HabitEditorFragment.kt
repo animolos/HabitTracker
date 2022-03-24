@@ -7,11 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.habittracker.*
-import com.example.habittracker.color_picker.ColorSelectionDialogFragment
-import com.example.habittracker.color_picker.OnColorSelectedListener
+import com.example.habittracker.ui.color_picker.ColorSelectionDialogFragment
+import com.example.habittracker.ui.color_picker.OnColorSelectedListener
 import com.example.habittracker.databinding.FragmentHabitEditorBinding
 import com.example.habittracker.models.HabitData
 import com.example.habittracker.models.HabitPeriodicity
@@ -110,7 +109,7 @@ class HabitEditorFragment : Fragment(), OnColorSelectedListener {
         val habit = createHabit(habitId)
         HabitRepository.addOrUpdate(habit)
 
-        findNavController().navigate(R.id.action_nav_habit_editor_to_nav_home, null)
+        findNavController().navigate(R.id.action_nav_habit_editor_to_nav_home)
     }
 
     private fun createHabit(habitId: Int): HabitData {

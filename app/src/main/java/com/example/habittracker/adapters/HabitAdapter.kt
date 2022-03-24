@@ -49,8 +49,6 @@ class HabitsAdapter(
                 .format(habit.description)
             binding.habitPriority.text = context.getString(R.string.habit_priority_text)
                 .format(habit.priority)
-            binding.habitType.text = context.getString(R.string.habit_type_text)
-                .format(habit.type)
             binding.habitPeriodicity.text = context.getString(R.string.habit_periodicity)
                 .format(habit.periodicity.timesCount, habit.periodicity.frequency)
 

@@ -17,7 +17,7 @@ object HabitRepository {
         return habits[habitId]
     }
 
-    fun getHabitsByType(habitType: HabitType): MutableList<HabitData> {
+    fun getByType(habitType: HabitType): MutableList<HabitData> {
         return habits.values.filter {
             it.type == habitType
         }.toMutableList()

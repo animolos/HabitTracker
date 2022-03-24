@@ -1,4 +1,4 @@
-package com.example.habittracker.color_picker
+package com.example.habittracker.ui.color_picker
 
 import android.content.Context
 import android.os.Bundle

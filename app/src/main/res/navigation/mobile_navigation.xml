@@ -22,7 +22,10 @@
         tools:layout="@layout/fragment_habit_editor" >
         <action
             android:id="@+id/action_nav_habit_editor_to_nav_home"
-            app:destination="@id/nav_home" />
+            app:destination="@id/nav_home"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment

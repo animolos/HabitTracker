@@ -48,7 +48,7 @@ class HabitsFragment : Fragment() {
         val habitType = arguments?.getSerializable(HABIT_TYPE) as HabitType
 
         val habitsAdapter = HabitsAdapter(
-            HabitRepository.getHabitsByType(habitType),
+            HabitRepository.getByType(habitType),
             this::editHabit
         )
 
