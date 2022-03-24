@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditHabitActivity">
+    tools:context=".ui.habits.HabitEditorFragment">
 
     <Button
         android:id="@+id/btn_create_habit"
@@ -15,9 +15,7 @@
         android:clickable="true"
         android:focusable="true"
         android:text="@string/text_save_btn"
-        app:borderWidth="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:borderWidth="5dp" />
 
     <ScrollView
         android:id="@+id/scroll_view"
@@ -29,9 +27,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="22dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginRight="22dp">
+            android:paddingBottom="60dp"
+            android:layout_margin="22dp">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btn_pick_color"
@@ -211,4 +208,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

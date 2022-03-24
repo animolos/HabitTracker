@@ -1,17 +1,19 @@
-package com.example.habittracker
+package com.example.habittracker.color_picker
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import androidx.fragment.app.DialogFragment
+import com.example.habittracker.R
 
 class ColorSelectionDialogFragment: DialogFragment() {
 
-    private var onColorSelectedListener: OnColorSelectedListener? = null
+    private lateinit var onColorSelectedListener: OnColorSelectedListener
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,12 +35,17 @@ class ColorSelectionDialogFragment: DialogFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        onColorSelectedListener = context as OnColorSelectedListener?
+        try {
+            onColorSelectedListener = parentFragment as OnColorSelectedListener
+        }
+        catch (err: ClassCastException) {
+            Log.e("color_picker", err.toString())
+        }
     }
 
     private fun sendColor(button: Button) {
         val background = button.currentHintTextColor
-        onColorSelectedListener?.onColorSelected(background)
+        onColorSelectedListener.onColorSelected(background)
         dismiss()
     }
 }

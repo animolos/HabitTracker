@@ -1,68 +1,41 @@
 package com.example.habittracker
 
-import android.app.Activity
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.animation.AccelerateInterpolator
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.habittracker.databinding.ActivityMainBinding
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    companion object {
-        const val HABIT_POSITION = "habit_position"
-    }
-
-    private lateinit var habitsAdapter: HabitsAdapter
-
-    private val startForCreateHabit = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val data: Intent? = result.data
-            val habitId = data?.getIntExtra(HABIT_POSITION, 0)
-            if (habitId != null) {
-                habitsAdapter.notifyItemInserted(habitId)
-            }
-        }
-    }
-
-    private val startForEditHabit = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val data: Intent? = result.data
-            val habitId = data?.getIntExtra(HABIT_POSITION, 0)
-            if (habitId != null) {
-                habitsAdapter.notifyItemChanged(habitId)
-            }
-        }
-    }
-
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        habitsAdapter = HabitsAdapter(this::editHabit)
+        setContentView(R.layout.activity_main)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-        binding.habitsRecycler.apply {
-            adapter = habitsAdapter
-            layoutManager = LinearLayoutManager(context)
-        }
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        val navController = findNavController(R.id.nav_host_fragment)
 
-        binding.btnAddNewHabit.setOnClickListener { addHabit() }
+        appBarConfiguration = AppBarConfiguration(setOf(
+            R.id.nav_home, R.id.nav_info), drawerLayout)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
     }
 
-    private fun addHabit() {
-        startForCreateHabit.launch(Intent(this, EditHabitActivity::class.java))
-    }
-
-    private fun editHabit(habit: HabitData) {
-        val intent = Intent(this, EditHabitActivity::class.java)
-            .apply {
-            putExtra(EditHabitActivity.HABIT_ITEM, habit)
-        }
-
-        startForEditHabit.launch(intent)
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }

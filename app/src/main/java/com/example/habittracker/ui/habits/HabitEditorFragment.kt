@@ -1,39 +1,59 @@
-package com.example.habittracker
+package com.example.habittracker.ui.habits
 
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.example.habittracker.databinding.EditHabitActivityBinding
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.habittracker.*
+import com.example.habittracker.color_picker.ColorSelectionDialogFragment
+import com.example.habittracker.color_picker.OnColorSelectedListener
+import com.example.habittracker.databinding.FragmentHabitEditorBinding
+import com.example.habittracker.models.HabitData
+import com.example.habittracker.models.HabitPeriodicity
+import com.example.habittracker.models.HabitPriority
+import com.example.habittracker.models.HabitType
+import com.example.habittracker.repositories.HabitRepository
 
-class EditHabitActivity : AppCompatActivity(), OnColorSelectedListener {
+class HabitEditorFragment : Fragment(), OnColorSelectedListener {
 
     companion object {
         const val HABIT_ITEM = "habit_item"
     }
 
-    private lateinit var binding: EditHabitActivityBinding
+    private var _binding: FragmentHabitEditorBinding? = null
+
+    private val binding get() = _binding!!
+
     private var color: Int = R.color.design_default_color_primary
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = EditHabitActivityBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentHabitEditorBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         var habitId = HabitRepository.size
 
-        val value = intent.getSerializableExtra(HABIT_ITEM)
-        if (value != null) {
-            val habit = value as HabitData
-            updateView(habit)
-            habitId = habit.id
+        arguments?.getSerializable(HABIT_ITEM)?.let {
+            updateView(it as HabitData)
+            habitId = it.id
         }
 
         binding.btnCreateHabit.setOnClickListener { onClickSaveHabit(habitId) }
 
         binding.btnPickColor.setOnClickListener {
-            ColorSelectionDialogFragment().show(supportFragmentManager, "Color Picker")
+            ColorSelectionDialogFragment().show(childFragmentManager, "color_picker")
         }
     }
 
@@ -90,15 +110,7 @@ class EditHabitActivity : AppCompatActivity(), OnColorSelectedListener {
         val habit = createHabit(habitId)
         HabitRepository.addOrUpdate(habit)
 
-        val intent = Intent(
-                this,
-                MainActivity::class.java
-        ).apply {
-            putExtra(MainActivity.HABIT_POSITION, habitId)
-        }
-
-        setResult(RESULT_OK, intent)
-        finish()
+        findNavController().navigate(R.id.action_nav_habit_editor_to_nav_home, null)
     }
 
     private fun createHabit(habitId: Int): HabitData {
@@ -117,6 +129,7 @@ class EditHabitActivity : AppCompatActivity(), OnColorSelectedListener {
             color
         )
     }
+
     override fun onColorSelected(color: Int) {
         binding.btnPickColor.backgroundTintList = ColorStateList.valueOf(color)
         this.color = color

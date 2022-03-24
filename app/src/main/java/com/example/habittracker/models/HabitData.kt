@@ -1,15 +1,15 @@
-package com.example.habittracker
+package com.example.habittracker.models
 
 import java.io.Serializable
 
 data class HabitData(
-        val id: Int,
-        val name: String,
-        val description: String,
-        val priority: HabitPriority,
-        val type: HabitType,
-        val periodicity: HabitPeriodicity,
-        val color: Int) : Serializable
+    val id: Int,
+    val name: String,
+    val description: String,
+    val priority: HabitPriority,
+    val type: HabitType,
+    val periodicity: HabitPeriodicity,
+    val color: Int) : Serializable
 
 enum class HabitPriority(val value: Int) {
     High(0),
