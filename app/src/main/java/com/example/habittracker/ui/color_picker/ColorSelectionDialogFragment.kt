@@ -11,7 +11,7 @@ import android.widget.LinearLayout
 import androidx.fragment.app.DialogFragment
 import com.example.habittracker.R
 
-class ColorSelectionDialogFragment: DialogFragment() {
+class ColorSelectionDialogFragment : DialogFragment() {
 
     private lateinit var onColorSelectedListener: OnColorSelectedListener
 
@@ -37,8 +37,7 @@ class ColorSelectionDialogFragment: DialogFragment() {
         super.onAttach(context)
         try {
             onColorSelectedListener = parentFragment as OnColorSelectedListener
-        }
-        catch (err: ClassCastException) {
+        } catch (err: ClassCastException) {
             Log.e("color_picker", err.toString())
         }
     }

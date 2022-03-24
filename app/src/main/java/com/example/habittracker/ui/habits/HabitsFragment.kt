@@ -23,9 +23,7 @@ class HabitsFragment : Fragment() {
 
         fun newInstance(habitType: HabitType) =
             HabitsFragment().apply {
-                arguments = Bundle().apply {
-                    putSerializable(HABIT_TYPE, habitType)
-                }
+                arguments = bundleOf(HABIT_TYPE to habitType)
             }
     }
 
@@ -58,9 +56,7 @@ class HabitsFragment : Fragment() {
         }
 
         binding.btnAddNewHabit.setOnClickListener(
-            Navigation.createNavigateOnClickListener(
-                R.id.action_nav_home_to_nav_habit_editor, null
-            )
+            Navigation.createNavigateOnClickListener(R.id.action_nav_home_to_nav_habit_editor)
         )
     }
 

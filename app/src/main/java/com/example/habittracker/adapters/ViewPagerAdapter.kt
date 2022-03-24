@@ -12,7 +12,7 @@ class ViewPagerAdapter(
 
     override fun getItemCount(): Int = 2
 
-    override fun createFragment(position: Int): Fragment = when(position) {
+    override fun createFragment(position: Int): Fragment = when (position) {
         0 -> HabitsFragment.newInstance(HabitType.Good)
         1 -> HabitsFragment.newInstance(HabitType.Bad)
         else -> throw NotImplementedError()

@@ -44,10 +44,11 @@ class HabitEditorFragment : Fragment(), OnColorSelectedListener {
 
         var habitId = HabitRepository.size
 
-        arguments?.getSerializable(HABIT_ITEM)?.let {
-            updateView(it as HabitData)
-            habitId = it.id
-        }
+        arguments?.getSerializable(HABIT_ITEM)
+            ?.let { habit ->
+                updateView(habit as HabitData)
+                habitId = habit.id
+            }
 
         binding.btnCreateHabit.setOnClickListener { onClickSaveHabit(habitId) }
 

@@ -9,7 +9,8 @@ data class HabitData(
     val priority: HabitPriority,
     val type: HabitType,
     val periodicity: HabitPeriodicity,
-    val color: Int) : Serializable
+    val color: Int
+) : Serializable
 
 enum class HabitPriority(val value: Int) {
     High(0),
@@ -32,4 +33,4 @@ enum class HabitType(val value: Int) {
     }
 }
 
-data class HabitPeriodicity(val timesCount: Int, val frequency: Int): Serializable
+data class HabitPeriodicity(val timesCount: Int, val frequency: Int) : Serializable

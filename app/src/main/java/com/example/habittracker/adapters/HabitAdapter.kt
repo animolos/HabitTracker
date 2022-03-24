@@ -15,7 +15,7 @@ typealias MyHabitClickListener = (HabitData) -> Unit
 class HabitsAdapter(
     private val data: MutableList<HabitData>,
     private val onClickListener: MyHabitClickListener
-) : RecyclerView.Adapter<HabitsAdapter.HabitViewHolder>() {
+) : RecyclerView.Adapter<HabitsAdapter.HabitViewHolder>() { // TODO List adapter
 
     lateinit var context: Context
 
@@ -39,8 +39,8 @@ class HabitsAdapter(
 
     override fun getItemCount(): Int = data.size
 
-    inner class HabitViewHolder(private val binding: HabitItemBinding)
-        : RecyclerView.ViewHolder(binding.root) {
+    inner class HabitViewHolder(private val binding: HabitItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(habit: HabitData) {
             binding.habitName.text = context.getString(R.string.habit_name_text)
