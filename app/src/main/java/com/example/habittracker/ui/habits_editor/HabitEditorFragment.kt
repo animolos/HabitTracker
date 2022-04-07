@@ -1,4 +1,4 @@
-package com.example.habittracker.ui.habits
+package com.example.habittracker.ui.habits_editor
 
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -7,16 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.habittracker.*
-import com.example.habittracker.ui.color_picker.ColorSelectionDialogFragment
-import com.example.habittracker.ui.color_picker.OnColorSelectedListener
+import com.example.habittracker.R
 import com.example.habittracker.databinding.FragmentHabitEditorBinding
 import com.example.habittracker.models.HabitData
 import com.example.habittracker.models.HabitPeriodicity
 import com.example.habittracker.models.HabitPriority
 import com.example.habittracker.models.HabitType
-import com.example.habittracker.repositories.HabitRepository
+import com.example.habittracker.ui.color_picker.ColorSelectionDialogFragment
+import com.example.habittracker.ui.color_picker.OnColorSelectedListener
 
 class HabitEditorFragment : Fragment(), OnColorSelectedListener {
 
@@ -28,13 +28,15 @@ class HabitEditorFragment : Fragment(), OnColorSelectedListener {
 
     private val binding get() = _binding!!
 
-    private var color: Int = R.color.design_default_color_primary
+    private lateinit var model: HabitEditorViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        model = ViewModelProvider(this).get(HabitEditorViewModel::class.java)
+
         _binding = FragmentHabitEditorBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -42,7 +44,7 @@ class HabitEditorFragment : Fragment(), OnColorSelectedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var habitId = HabitRepository.size
+        var habitId = model.getNewId()
 
         arguments?.getSerializable(HABIT_ITEM)
             ?.let { habit ->
@@ -72,7 +74,7 @@ class HabitEditorFragment : Fragment(), OnColorSelectedListener {
         binding.editTextTimes.setText(habit.periodicity.timesCount.toString())
         binding.editTextFrequency.setText(habit.periodicity.frequency.toString())
 
-        color = habit.color
+        model.color = habit.color
         binding.btnPickColor.backgroundTintList = ColorStateList.valueOf(habit.color)
     }
 
@@ -108,7 +110,7 @@ class HabitEditorFragment : Fragment(), OnColorSelectedListener {
             return
 
         val habit = createHabit(habitId)
-        HabitRepository.addOrUpdate(habit)
+        model.addOrUpdate(habit)
 
         findNavController().navigate(R.id.action_nav_habit_editor_to_nav_home)
     }
@@ -126,12 +128,12 @@ class HabitEditorFragment : Fragment(), OnColorSelectedListener {
                 binding.editTextTimes.text.toString().toInt(),
                 binding.editTextFrequency.text.toString().toInt()
             ),
-            color
+            model.color
         )
     }
 
     override fun onColorSelected(color: Int) {
         binding.btnPickColor.backgroundTintList = ColorStateList.valueOf(color)
-        this.color = color
+        model.color = color
     }
 }

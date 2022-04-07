@@ -13,11 +13,12 @@ import com.example.habittracker.models.HabitData
 typealias MyHabitClickListener = (HabitData) -> Unit
 
 class HabitsAdapter(
-    private val data: MutableList<HabitData>,
     private val onClickListener: MyHabitClickListener
 ) : RecyclerView.Adapter<HabitsAdapter.HabitViewHolder>() { // TODO List adapter
 
-    lateinit var context: Context
+    private var habits: List<HabitData> = emptyList()
+
+    private lateinit var context: Context
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -30,14 +31,19 @@ class HabitsAdapter(
     }
 
     override fun onBindViewHolder(holder: HabitViewHolder, position: Int) {
-        val habit: HabitData = data[position]
+        val habit: HabitData = habits[position]
         holder.bind(habit)
         holder.itemView.setOnClickListener {
             onClickListener(habit)
         }
     }
 
-    override fun getItemCount(): Int = data.size
+    override fun getItemCount(): Int = habits.size
+
+    fun updateHabits(habits: List<HabitData>) {
+        this.habits = habits
+        notifyDataSetChanged()
+    }
 
     inner class HabitViewHolder(private val binding: HabitItemBinding) :
         RecyclerView.ViewHolder(binding.root) {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.habits.HabitEditorFragment">
+    tools:context=".ui.habits_editor.HabitEditorFragment">
 
     <Button
         android:id="@+id/btn_create_habit"
