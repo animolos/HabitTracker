@@ -8,15 +8,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.habittracker.R
 import com.example.habittracker.databinding.HabitItemBinding
-import com.example.habittracker.models.HabitData
+import com.example.habittracker.models.Habit
 
-typealias MyHabitClickListener = (HabitData) -> Unit
+typealias MyHabitClickListener = (Habit) -> Unit
 
 class HabitsAdapter(
     private val onClickListener: MyHabitClickListener
 ) : RecyclerView.Adapter<HabitsAdapter.HabitViewHolder>() { // TODO List adapter
 
-    private var habits: List<HabitData> = emptyList()
+    private var habits: List<Habit> = emptyList()
 
     private lateinit var context: Context
 
@@ -31,7 +31,7 @@ class HabitsAdapter(
     }
 
     override fun onBindViewHolder(holder: HabitViewHolder, position: Int) {
-        val habit: HabitData = habits[position]
+        val habit: Habit = habits[position]
         holder.bind(habit)
         holder.itemView.setOnClickListener {
             onClickListener(habit)
@@ -40,7 +40,7 @@ class HabitsAdapter(
 
     override fun getItemCount(): Int = habits.size
 
-    fun updateHabits(habits: List<HabitData>) {
+    fun updateHabits(habits: List<Habit>) {
         this.habits = habits
         notifyDataSetChanged()
     }
@@ -48,7 +48,7 @@ class HabitsAdapter(
     inner class HabitViewHolder(private val binding: HabitItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(habit: HabitData) {
+        fun bind(habit: Habit) {
             binding.habitName.text = context.getString(R.string.habit_name_text)
                 .format(habit.name)
             binding.habitDescription.text = context.getString(R.string.habit_description_text)

@@ -7,11 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.habittracker.R
 import com.example.habittracker.databinding.FragmentHabitEditorBinding
-import com.example.habittracker.models.HabitData
+import com.example.habittracker.models.Habit
 import com.example.habittracker.models.HabitPeriodicity
 import com.example.habittracker.models.HabitPriority
 import com.example.habittracker.models.HabitType
@@ -28,15 +28,13 @@ class HabitEditorFragment : Fragment(), OnColorSelectedListener {
 
     private val binding get() = _binding!!
 
-    private lateinit var model: HabitEditorViewModel
+    private val model: HabitEditorViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        model = ViewModelProvider(this).get(HabitEditorViewModel::class.java)
-
         _binding = FragmentHabitEditorBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -48,7 +46,7 @@ class HabitEditorFragment : Fragment(), OnColorSelectedListener {
 
         arguments?.getSerializable(HABIT_ITEM)
             ?.let { habit ->
-                updateView(habit as HabitData)
+                updateView(habit as Habit)
                 habitId = habit.id
             }
 
@@ -59,7 +57,7 @@ class HabitEditorFragment : Fragment(), OnColorSelectedListener {
         }
     }
 
-    private fun updateView(habit: HabitData) {
+    private fun updateView(habit: Habit) {
         binding.editTextHabitName.setText(habit.name)
         binding.editTextHabitDescription.setText(habit.description)
 
@@ -115,10 +113,10 @@ class HabitEditorFragment : Fragment(), OnColorSelectedListener {
         findNavController().navigate(R.id.action_nav_habit_editor_to_nav_home)
     }
 
-    private fun createHabit(habitId: Int): HabitData {
+    private fun createHabit(habitId: Int): Habit {
         val habitType = if (binding.radioButtonGood.isChecked) HabitType.Good else HabitType.Bad
 
-        return HabitData(
+        return Habit(
             habitId,
             binding.editTextHabitName.text.toString(),
             binding.editTextHabitDescription.text.toString(),

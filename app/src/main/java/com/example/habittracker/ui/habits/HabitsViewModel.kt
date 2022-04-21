@@ -5,9 +5,9 @@ import android.widget.Filterable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.habittracker.models.HabitData
+import com.example.habittracker.models.Habit
 import com.example.habittracker.models.HabitType
-import com.example.habittracker.repositories.HabitStorage
+import com.example.habittracker.repositories.HabitRepository
 
 class HabitsViewModel(habitType: HabitType) : ViewModel(), Filterable {
 
@@ -17,10 +17,10 @@ class HabitsViewModel(habitType: HabitType) : ViewModel(), Filterable {
         }
     }
 
-    private val initHabits: List<HabitData> = HabitStorage.getByType(habitType)
+    private val initHabits: List<Habit> = HabitRepository().getByType(habitType)
 
-    val habits: MutableLiveData<List<HabitData>> by lazy {
-        MutableLiveData<List<HabitData>>().apply {
+    val habits: MutableLiveData<List<Habit>> by lazy {
+        MutableLiveData<List<Habit>>().apply {
             value = initHabits
         }
     }
@@ -39,7 +39,7 @@ class HabitsViewModel(habitType: HabitType) : ViewModel(), Filterable {
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                habits.value = results?.values as? List<HabitData>?
+                habits.value = results?.values as List<Habit>
             }
         }
     }

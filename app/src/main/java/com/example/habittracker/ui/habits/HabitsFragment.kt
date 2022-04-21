@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.habittracker.R
 import com.example.habittracker.adapters.HabitsAdapter
 import com.example.habittracker.databinding.FragmentHabitsBinding
-import com.example.habittracker.models.HabitData
+import com.example.habittracker.models.Habit
 import com.example.habittracker.models.HabitType
 import com.example.habittracker.ui.habits_editor.HabitEditorFragment
 
@@ -43,7 +42,7 @@ class HabitsFragment : Fragment(), LifecycleOwner {
         val habitType = arguments?.getSerializable(HABIT_TYPE) as HabitType
 
         val factory = HabitsViewModel.Factory(habitType)
-        model = ViewModelProvider(this, factory).get(HabitsViewModel::class.java)
+        model = ViewModelProvider(this, factory).get(HabitsViewModel::class.java) // TODO sigleton viewmodel
 
         _binding = FragmentHabitsBinding.inflate(inflater, container, false)
         return binding.root
@@ -63,17 +62,14 @@ class HabitsFragment : Fragment(), LifecycleOwner {
             habitsAdapter.updateHabits(it)
         }
 
-        val bottomSheet = BottomSheetDialogFragment()
-        childFragmentManager.beginTransaction()
-            .replace(R.id.bottom_sheet, bottomSheet)
-            .commit()
+        BottomSheetDialogFragment().show(childFragmentManager, null)
 
         binding.btnAddNewHabit.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_nav_home_to_nav_habit_editor)
         )
     }
 
-    private fun editHabit(habit: HabitData) {
+    private fun editHabit(habit: Habit) {
         val bundle = bundleOf(HabitEditorFragment.HABIT_ITEM to habit)
         findNavController().navigate(R.id.action_nav_home_to_nav_habit_editor, bundle)
     }
