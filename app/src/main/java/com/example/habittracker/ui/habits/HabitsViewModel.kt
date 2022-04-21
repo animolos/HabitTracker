@@ -21,7 +21,7 @@ class HabitsViewModel(habitType: HabitType) : ViewModel(), Filterable {
     private  var habitRepository: HabitRepository = HabitRepository()
 
     private lateinit var initHabits: List<Habit>
-    
+
     val habits: MutableLiveData<List<Habit>> = MutableLiveData<List<Habit>>()
 
     init {
