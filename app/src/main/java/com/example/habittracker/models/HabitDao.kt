@@ -6,7 +6,8 @@ import androidx.room.*
 @Dao
 @TypeConverters(
     Habit.TypeConverter::class,
-    Habit.PriorityConverter::class)
+    Habit.PriorityConverter::class,
+    Habit.PeriodicityConverter::class)
 interface HabitDao {
     @Query("SELECT * FROM Habit")
     fun getAll(): LiveData<List<Habit>>

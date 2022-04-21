@@ -62,7 +62,11 @@ class HabitsFragment : Fragment(), LifecycleOwner {
             habitsAdapter.updateHabits(it)
         }
 
-        BottomSheetDialogFragment().show(childFragmentManager, null)
+        // TODO    BottomSheetDialogFragment().show(childFragmentManager, null)
+        val bottomSheet = BottomSheetDialogFragment()
+        childFragmentManager.beginTransaction()
+            .replace(R.id.bottom_sheet, bottomSheet)
+            .commit()
 
         binding.btnAddNewHabit.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_nav_home_to_nav_habit_editor)

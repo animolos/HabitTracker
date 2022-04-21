@@ -7,7 +7,10 @@ import androidx.room.TypeConverters
 import java.io.Serializable
 
 @Entity
-@TypeConverters(Habit.TypeConverter::class, Habit.PriorityConverter::class)
+@TypeConverters(
+    Habit.TypeConverter::class,
+    Habit.PriorityConverter::class,
+    Habit.PeriodicityConverter::class)
 data class Habit(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo val name: String,
@@ -32,6 +35,20 @@ data class Habit(
 
         @androidx.room.TypeConverter
         fun toPriority(value: Int): HabitPriority? = HabitPriority.getByValue(value)
+    }
+
+    class PeriodicityConverter {
+        @androidx.room.TypeConverter
+        fun fromPriority(periodicity: HabitPeriodicity): String = "${periodicity.timesCount};${periodicity.frequency}"
+
+        @androidx.room.TypeConverter
+        fun toPriority(value: String): HabitPeriodicity {
+            val tokens = value.split(';')
+            return HabitPeriodicity(
+                tokens[0].toInt(),
+                tokens[1].toInt()
+            )
+        }
     }
 }
 
