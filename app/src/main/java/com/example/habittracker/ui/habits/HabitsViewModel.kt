@@ -3,7 +3,6 @@ package com.example.habittracker.ui.habits
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.habittracker.models.Habit
@@ -18,7 +17,10 @@ class HabitsViewModel(habitType: HabitType) : ViewModel(), Filterable {
         }
     }
 
-    private  var habitRepository: HabitRepository = HabitRepository()
+    // mediator live data
+    // flow
+    // filter livedata
+    private var habitRepository = HabitRepository()
 
     private lateinit var initHabits: List<Habit>
 

@@ -1,12 +1,11 @@
 package com.example.habittracker.repositories
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import com.example.habittracker.HabitTrackerApp
 import com.example.habittracker.models.Habit
 import com.example.habittracker.models.HabitType
 
-class HabitRepository: Application() {
+class HabitRepository {
 
     val habits: LiveData<List<Habit>> = HabitTrackerApp.db.HabitDao().getAll()
 
